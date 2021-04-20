@@ -1,0 +1,31 @@
+# more settings here: https://raw.githubusercontent.com/arybczak/ncmpcpp/master/doc/config
+
+# connection settings
+mpd_host = localhost
+mpd_port = 6600
+mpd_music_dir = ~/Music
+mpd_crossfade_time = 5
+mpd_connection_timeout = 5
+
+# other paths
+lyrics_directory = ~/.config/ncmpcpp/lyrics
+
+# interface
+playlist_display_mode = "columns"
+browser_display_mode = "columns"
+search_engine_display_mode = "classic"
+header_visibility = "yes"
+statusbar_visibility = "yes"
+display_bitrate = "yes"
+
+# colors
+volume_color = "green"
+
+# visualizer settings
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "30"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "●▮"
+visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161

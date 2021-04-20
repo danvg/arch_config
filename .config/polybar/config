@@ -1,0 +1,209 @@
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 5
+
+[colors]
+background =#151f22
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/shared]
+monitor=${env:MONITOR:HDMI-0}
+radius=4
+background=${colors.background}
+foreground=${colors.foreground}
+line-size = 3
+line-color = #f00
+border-size = 4
+border-color = #00000000
+padding-left = 1
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+font-0 = "Noto Sans:Style=Regular:size=10"
+font-1 = "Noto Color Emoji:style=Regular:scale=10;2"
+font-2 = "Noto Sans Mono:style=Regular:size=10"
+cursor-click = pointer
+cursor-scroll = ns-resize
+width = 5%
+height = 27
+fixed-center=true
+override-redirect = true
+wm-restack = i3
+
+[bar/left]
+inherit=bar/shared
+with=1
+modules-left=i3
+override-redirect = false
+
+[bar/left_center]
+inherit=bar/shared
+offset-x=12%
+width=25%
+modules-center=mpd
+
+[bar/center]
+inherit=bar/shared
+offset-x=45%
+width=10%
+modules-center=date
+
+[bar/right]
+inherit=bar/shared
+offset-x=75%
+width=25%
+modules-center=filesystem cpu memory eth xkeyboard pulseaudio
+
+tray-position = right
+tray-padding = 4
+tray-background = #0063ff
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+label-unfocused = %index%
+label-unfocused-padding = 2
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+[module/date]
+type = internal/date
+interval = 5
+date =
+date-alt = %Y-%m-%d
+time = %H:%M
+time-alt = %H:%M:%S
+format-prefix =
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #0a6cf5
+
+label = %date% %time%
+
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next> [🎵 <label-song>]  <bar-progress>
+format-offline = <label-offline>
+icon-prev = ⏮
+icon-stop = ⏹
+icon-play = ⏯
+icon-pause = ⏸
+icon-next = ⏭
+label-song-maxlen = 25
+label-song-ellipsis = true
+label-offline = mpd offline
+bar-progress-format = [%fill%%{-o -u}%indicator%%{-o -u}%empty%%{-o -u}]
+toggle-on-foreground =
+toggle-off-foreground = #55
+bar-progress-width = 35
+bar-progress-indicator = |
+bar-progress-fill = •
+bar-progress-empty = ·
+bar-progress-empty-font = 2
+bar-progress-indicator-font = 2
+bar-progress-fill-font = 2
+bar-progress-fill-foreground = #6BB3E7
+bar-progress-empty-foreground = #666666
+bar-progress-indicator-foreground = #666666A85659
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "CPU "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #f90000
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "MEM "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #4bffdc
+label = %percentage_used%%
+
+[module/eth]
+type = internal/network
+interface = enp5s0
+interval = 3.0
+format-connected-underline = #55aa55
+format-connected-prefix = "ETH "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+format-prefix = "KB "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.secondary}
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+label-muted = muted
+label-muted-foreground = #666
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+; vim:ft=dosini
