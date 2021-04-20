@@ -18,16 +18,19 @@ autoload -Uz compinit
 compinit -d "$XDG_CACHE_HOME/zcompdump"
 
 if type "bat" > /dev/null; then
-    alias ccat='bat'
+    alias ccat="bat"
 fi
 
 if type "lsd" > /dev/null; then
-    alias ls='lsd'
+    alias ls="lsd"
 else
-    alias ls='ls -hF --color=tty'
+    alias ls="ls -hF --color=tty"
 fi
 
-alias cls=clear
+alias cls="clear"
+alias rm="rm -vI"
+alias cp="cp -iv"
+alias mv="mv -iv"
 
 # fix delete with backspace when switching modes
 bindkey "^?" backward-delete-char
