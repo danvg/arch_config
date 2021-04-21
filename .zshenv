@@ -118,8 +118,12 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 if [ -f "$XDG_CONFIG_HOME/.dir_colors" ]; then
   eval $(dircolors "$XDG_CONFIG_HOME/.dir_colors")
 fi
+
 # paths
 if [ -d "$HOME/.local/bin" ]; then
   export PATH="$PATH:$HOME/.local/bin"
 fi
 
+if [ -d "$XDG_DATA_HOME/npm" ]; then
+  export PATH="$PATH:$XDG_DATA_HOME/npm/node_modules/.bin"
+fi
