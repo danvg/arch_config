@@ -14,11 +14,11 @@ export HISTFILE="$XDG_DATA_HOME/zsh/history"
 # disable files
 export LESSHISTFILE=-
 
-# NOTE: This is not working with KDE. Applications can't be opened and
-# complain about not being able to get the window id or something
 # xorg: ~/.xinitrc, ~/.xserverrc
-# export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
-# export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
+export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
+
+# NOTE: This is not working with login managers
 # export XAUTHORITY="$XDG_CACHE_HOME/Xauthority"
 
 # kde: ~/.kde4
@@ -85,15 +85,23 @@ export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME/android/emulator"
 export ANDROID_HOME="$XDG_DATA_HOME/android"
 
 ##########################################################################
+# Fix for KDE apps
+##########################################################################
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=1
+
+##########################################################################
 
 # default apps
 export EDITOR="nvim"
-export READER="okular"
+export READER="zathura"
 export VISUAL="nvim"
-export TERMINAL="konsole"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 export VIDEO="mpv"
-export IMAGE="gwenview"
+export IMAGE="sxiv"
 export COLORTERM="truecolor"
 export OPENER="xdg-open"
 export PAGER="less"
@@ -127,3 +135,4 @@ fi
 if [ -d "$XDG_DATA_HOME/npm" ]; then
   export PATH="$PATH:$XDG_DATA_HOME/npm/node_modules/.bin"
 fi
+
