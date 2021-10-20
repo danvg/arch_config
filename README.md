@@ -11,7 +11,7 @@ ls /sys/firmware/efi/efivars
 
 ## Update system clock
 
-timedatectl set-ntp true
+timedatectl set-ntp true  
 timedatectl status
 
 ## Create partition table
@@ -27,12 +27,9 @@ mkfs.ext4 /dev/sda3
 
 ## Mount partitions
 
-mount /dev/sda2 /mnt
-
-mkdir /mnt/boot  
-mkdir /mnt/boot/efi  
-mount /dev/sda1 /mnt/boot/efi
-
+mount /dev/sda2 /mnt  
+mkdir -p /mnt/boot/efi  
+mount /dev/sda1 /mnt/boot/efi  
 mkdir /mnt/home  
 mount /dev/sda3 /mnt/home
 
@@ -46,13 +43,13 @@ reflector -c "sweden" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 ## Install essential packages
 
 pacstrap /mnt base base-devel linux linux-firmware
-amd-ucode nvidia networkmanager man-db man-pages sudo nano
+amd-ucode nvidia networkmanager man-db man-pages sudo nano neovim
 
 ## Generate fstab for mounted partitions
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-## change root into the system
+## Change root into the system
 
 arch-chroot /mnt
 
@@ -87,8 +84,8 @@ passwd
 
 ## Setup a boot loader
 
-pacman -S --needed grub efibootmgr os-prober
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCH
+pacman -S --needed grub efibootmgr os-prober  
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ARCH  
 grub-mkconfig -o /boot/grub/grub.cfg
 
 ## Install xserver
@@ -97,38 +94,39 @@ pacman -S xorg xorg-server xclip xsel
 
 ## Install a DE or WM
 
-pacman -S plasma sddm sudo konsole zsh
+pacman -S plasma sddm konsole zsh
 
 ## Create a user
 
-EDITOR=nano visudo
+EDITOR=neovim visudo
 
-uncomment
-%wheel ALL=(ALL) ALL
+uncomment %wheel ALL=(ALL) ALL
 
-useradd -m -G wheel -s /bin/zsh dan
+useradd -m -G wheel -s /bin/zsh dan  
 passwd dan
 
 ## Exit and reboot
 
 exit  
-umount /mnt/boot/efi
-umount /mnt/home
-umount /mnt
+umount /mnt/boot/efi  
+umount /mnt/home  
+umount /mnt  
 reboot
 
 ## Enable services
 
-systemctl enable NetworkManager.service
+systemctl enable NetworkManager.service  
 systemctl enable sddm
 
 ## If all its working install additional software
 
 pacman -S --needed
-ttf-dejavu ttf-liberation noto-fonts noto-emoji
-git openssh gcc gcc-ada clang cmake make python-pip tmux
-chromium thunderbird speedcrunch pgadmin4 dia konsole
-libreoffice-fresh htop mpv mpd ncmpcpp filelight
+ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji
+git openssh gcc gcc-ada clang cmake make ninja nodejs npm yarn python-pip
+tmux fzf rsync nnn bat lsd ripgrep fd htop lazygit wget which mpv mpd ncmpcpp
+firefox thunderbird speedcrunch dia konsole filelight dolphin spectacle
+gwenview kite okular kdiff3 kdialog
+libreoffice-fresh jdk-openjdk
 
 ## Extras
 
@@ -136,4 +134,3 @@ libreoffice-fresh htop mpv mpd ncmpcpp filelight
 
 systemctl --user enable mpd  
 use the ALSA output, pulseaudio sucks
-s
