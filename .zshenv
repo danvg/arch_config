@@ -111,6 +111,13 @@ export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# editor
+export EDITOR_FONT_FAMILY="JetBrainsMono Nerd Font"
+export EDITOR_FONT_SIZE=12
+export EDITOR_NIGHT_LIGHT=1
+export EDITOR_NIGHT_LIGHT_START="18:00"
+export EDITOR_NIGHT_LIGHT_END="08:00"
+
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
