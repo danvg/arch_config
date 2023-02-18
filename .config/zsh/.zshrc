@@ -35,6 +35,10 @@ alias mv="mv -iv"
 # fix delete with backspace when switching modes
 bindkey "^?" backward-delete-char
 
+# add keybindings for fzf
+source /usr/share/fzf/key-bindings.zsh
+
+# add zsh plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
