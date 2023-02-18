@@ -14,6 +14,7 @@ unsetopt BEEP
 
 bindkey -v
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"
+zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
 autoload -Uz compinit
 compinit -d "$XDG_CACHE_HOME/zcompdump"
 
