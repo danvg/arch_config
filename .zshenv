@@ -112,6 +112,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # editor
+export EDITOR_COLORSCHEME="gruvbox"
 export EDITOR_FONT_FAMILY="JetBrainsMono Nerd Font"
 export EDITOR_FONT_SIZE=12
 export EDITOR_NIGHT_LIGHT=1
